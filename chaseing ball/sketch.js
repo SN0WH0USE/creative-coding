@@ -1,12 +1,11 @@
 var r,g,b;
-
+var o=300;
 var rx, ry;
 
 var bx=0
 var by=0
 var byb=0
-var bxc=0
-var byb, bxb, byc, bxc, byd, bxd;
+var byb, bxb, byc, bxc;
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
@@ -14,92 +13,83 @@ function setup() {
   rx=floor(random(0,windowWidth));
   ry=floor(random(0,windowHeight));
    bxb=windowWidth;
+   bxc=floor(windowWidth/2);
    byc=windowHeight;
-   byd=windowHeight;
-   bxd=windowWidth;
    r= random(0,250);
    g= random(0,250);
    b= random(0,250);
 
-   background(0);
 
 }
 
 function draw() {
+  background(255,255,255,7);
 
-  fill(r,g,b,50);
+  fill(r,g,b,o);
+  o--
+  if (o<=0) {
+    rx=-10
+    ry=-10
+  }
   //stroke(r/2,g/2,b/2);
   ellipse(bx,by,25,25);
 
-  fill(r/2,g/2,b,50);
-  ellipse(bxb,byb,25,25);
+  fill(r/2,g/2,b/2,o);
+  triangle(bxb,byb, bxb+25,byb ,bxb+12.5,byb+20);
 
-  fill(r*2,g*2,b*2,50);
-  ellipse(bxc,byc,25,25);
 
-  fill(r/2,g*2,b,50);
-  ellipse(bxd,byd,25,25);
+  fill(r/3,g*2,b*2,o);
+  rect(bxc,byc,25,25);
 
 //noFill()
 noStroke()
-fill(0)
-  rect(rx,ry,1,1);
+fill("yellow")
+  rect(rx,ry,20,20);
 
 
   if (bx<rx) {
-  bx+=2
+  bx+=3
   }
   if (bx>rx) {
-  bx--
+  bx-=2
   }
   if (by<ry) {
-  by++
+  by+=3
   }
   if (by>ry) {
-  by--
+  by-=2
   }
 
   if (bxb<rx) {
-  bxb++
+  bxb+=1
   }
   if (bxb>rx) {
   bxb-=2
   }
   if (byb<ry) {
-  byb++
+  byb+=3
   }
   if (byb>ry) {
-  byb--
+  byb-=4
   }
 
   if (bxc<rx) {
-  bxc++
+  bxc+=4
   }
   if (bxc>rx) {
-  bxc--
+  bxc-=3
   }
   if (byc<ry) {
   byc+=2
   }
   if (byc>ry) {
-  byc--
+  byc-=1
   }
 
-  if (bxd<rx) {
-  bxd++
-  }
-  if (bxd>rx) {
-  bxd--
-  }
-  if (byd<ry) {
-  byd++
-  }
-  if (byd>ry) {
-  byd-=2
-  }
 
-   if (bx==rx && by==ry || bxb==rx && byb==ry || bxc==rx && byc==ry || bxd==rx && byd==ry) {
+   if (bx==rx && by==ry || bxb==rx && byb==ry || bxc==rx && byc==ry) {
     rx=floor(random(0,windowWidth));
     ry=floor(random(0,windowHeight));
+    o=300
   }
 }
